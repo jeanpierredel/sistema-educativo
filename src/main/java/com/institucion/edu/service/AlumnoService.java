@@ -1,0 +1,30 @@
+package com.institucion.edu.service;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.institucion.edu.entity.Alumno;
+import com.institucion.edu.repository.AlumnoRepository;
+
+@Service
+public class AlumnoService {
+
+    @Autowired
+    private AlumnoRepository alumnoRepository;
+
+    public List<Alumno> listarTodos() {
+        return alumnoRepository.findAll();
+    }
+
+    public Alumno guardar(Alumno alumno) {
+        return alumnoRepository.save(alumno);
+    }
+
+    public Alumno buscarPorId(int id) {
+        return alumnoRepository.findById(id).orElse(null);
+    }
+
+    public void eliminar(int id) {
+        alumnoRepository.deleteById(id);
+    }
+}
